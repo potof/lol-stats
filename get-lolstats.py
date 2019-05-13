@@ -36,14 +36,14 @@ class Player:
         elif val == "●":
             self.stats[key] = 1
         elif key == "KDA":
-            n = kda.split("/")
-            self.kill = n[0]
-            self.death = n[1]
-            self.assist = n[2]
-            if n[1] == 0:
-                self.stats[key] = n[0] + n[2]
+            n = val.split("/")
+            self.kill = int(n[0])
+            self.death = int(n[1])
+            self.assist = int(n[2])
+            if self.death == 0 or (self.kill + self.assist) == 0:
+                self.stats[key] = self.kill + self.assist
             else:
-                self.stats[key] = (n[0] + n[2]) / n[1]
+                self.stats[key] = (self.kill + self.assist) / self.death
         elif re.match(r"([0-9]+\.[0-9]+k)|([0-9]+k)", val):
             self.stats[key] = float(val.rstrip("k")) * 1000
         else:
