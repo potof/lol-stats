@@ -28,11 +28,26 @@ class Player:
         t.update(self.stats)
         return t
     
-    def set_kda(self, kda):
-         n = kda.split("/")
-         self.kill = n[0]
-         self.death = n[1]
-         self.assist = n[2]
+    def set_stats(self, key, val):
+        if val == "-":
+            self.stats[key] = 0
+        elif val == "○":
+            self.stats[key] = 0
+        elif val == "●":
+            self.stats[key] = 1
+        elif key == "KDA":
+            n = kda.split("/")
+            self.kill = n[0]
+            self.death = n[1]
+            self.assist = n[2]
+            if n[1] == 0:
+                self.stats[key] = n[0] + n[2]
+            else:
+                self.stats[key] = (n[0] + n[2]) / n[1]
+        elif re.match(r"([0-9]+\.[0-9]+k)|([0-9]+k)", val):
+            self.stats[key] = float(val.rstrip("k")) * 1000
+        else:
+            self.stats[key] = val
 
 
 @dataclasses.dataclass
@@ -204,6 +219,16 @@ game.team2.player3.champion = div_champs[7].attrs["data-rg-id"]
 game.team2.player4.champion = div_champs[8].attrs["data-rg-id"]
 game.team2.player5.champion = div_champs[9].attrs["data-rg-id"]
 
+game.team1.player1.role = "top"
+game.team1.player2.role = "jg"
+game.team1.player3.role = "mid"
+game.team1.player4.role = "adc"
+game.team1.player5.role = "sup"
+game.team2.player1.role = "top"
+game.team2.player2.role = "jg"
+game.team2.player3.role = "mid"
+game.team2.player4.role = "adc"
+game.team2.player5.role = "sup"
 
 
 # プレイヤーの詳細statsを登録する
@@ -219,27 +244,24 @@ for row in rows:
 
     # player classのdictにいれる
     # TODO: プレイヤーごとに書かないような感じにしたい
-    game.team1.player1.stats[key] = convert_to_num(value[0].string.replace("\n",""))
-    game.team1.player2.stats[key] = convert_to_num(value[1].string.replace("\n",""))
-    game.team1.player3.stats[key] = convert_to_num(value[2].string.replace("\n",""))
-    game.team1.player4.stats[key] = convert_to_num(value[3].string.replace("\n",""))
-    game.team1.player5.stats[key] = convert_to_num(value[4].string.replace("\n",""))
-    game.team2.player1.stats[key] = convert_to_num(value[5].string.replace("\n",""))
-    game.team2.player2.stats[key] = convert_to_num(value[6].string.replace("\n",""))
-    game.team2.player3.stats[key] = convert_to_num(value[7].string.replace("\n",""))
-    game.team2.player4.stats[key] = convert_to_num(value[8].string.replace("\n",""))
-    game.team2.player5.stats[key] = convert_to_num(value[9].string.replace("\n",""))
-
+    game.team1.player1.set_stats(key, value[0].string.replace("\n",""))
+    game.team1.player2.set_stats(key, value[1].string.replace("\n",""))
+    game.team1.player3.set_stats(key, value[2].string.replace("\n",""))
+    game.team1.player4.set_stats(key, value[3].string.replace("\n",""))
+    game.team1.player5.set_stats(key, value[4].string.replace("\n",""))
+    game.team2.player1.set_stats(key, value[5].string.replace("\n",""))
+    game.team2.player2.set_stats(key, value[6].string.replace("\n",""))
+    game.team2.player3.set_stats(key, value[7].string.replace("\n",""))
+    game.team2.player4.set_stats(key, value[8].string.replace("\n",""))
+    game.team2.player5.set_stats(key, value[9].string.replace("\n",""))
 
 
 # CSV出力
-# output_file = "LJL-stats" + datetime.now().strftime("%Y%m%d-%H%M%S") + ".csv"
 output_file = "LJL-stats.csv"
 with open( output_file, "w", newline="") as f:
     csv_g = game.to_csv()
     writer = csv.DictWriter(f, csv_g[0].keys())
     writer.writeheader()
     writer.writerows(csv_g)
-
 f.close()
 
