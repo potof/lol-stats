@@ -8,16 +8,17 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-@dataclasses.dataclass
 class Player:
-    name: str = ""
-    champion: str = ""
-    role: str = ""
-    kill: int = 0
-    death: int = 0
-    assist: int = 0
-    cs: int = 0
-    stats: dict = field(default_factory=dict)
+
+    def __init__(self):
+        self.name = ""
+        self.champion = ""
+        self.role = ""
+        self.kill = 0
+        self.death = 0
+        self.assist = 0
+        self.cs = 0
+        self.stats = {}
 
     def to_dict(self):
         t = {"name":self.name, "champion":self.champion, "role":self.role, "kill":self.kill,
@@ -47,25 +48,26 @@ class Player:
             self.stats[key] = val
 
 
-@dataclasses.dataclass
 class Team:
-    game_result: str = ""
-    # TODO: player1~5は配列にしたほうがよさそう
-    player1: Player = field(default_factory=Player)
-    player2: Player = field(default_factory=Player)
-    player3: Player = field(default_factory=Player)
-    player4: Player = field(default_factory=Player)
-    player5: Player = field(default_factory=Player)
-    towers_destroyed: int = 0
-    inhibitors_destroyed: int = 0
-    barons_slain: int = 0
-    dragons_slain: int = 0
-    rift_heralds_slain: int = 0
-    ban1: str = ""
-    ban2: str = ""
-    ban3: str = ""
-    ban4: str = ""
-    ban5: str = ""
+
+    def __init__(self):
+        self.game_result= ""
+        # TODO: player1~5は配列にしたほうがよさそう
+        self.player1 = Player()
+        self.player2 = Player()
+        self.player3 = Player()
+        self.player4 = Player()
+        self.player5 = Player()
+        self.towers_destroyed = 0
+        self.inhibitors_destroyed = 0
+        self.barons_slain = 0
+        self.dragons_slain = 0
+        self.rift_heralds_slain = 0
+        self.ban1 = ""
+        self.ban2 = ""
+        self.ban3 = ""
+        self.ban4 = ""
+        self.ban5 = ""
 
     def to_csv(self):
         cm = {"game_result":self.game_result, "towers_destroyed":self.towers_destroyed, "inhibitors_destroyed":self.inhibitors_destroyed,
@@ -83,14 +85,14 @@ class Team:
         p5.update(cm)
         return p1, p2, p3, p4, p5
 
-
-@dataclasses.dataclass
 class Game:
-    date: str = ""
-    time: str = ""
-    # TODO: team1, team2 は配列にしたほうがよさそう
-    team1: Team = field(default_factory=Team)
-    team2: Team = field(default_factory=Team)
+
+    def __init__(self):
+        self.date = ""
+        self.time = ""
+        # TODO: team1, team2 は配列にしたほうがよさそう
+        self.team1 = Team()
+        self.team2 = Team()
 
     def to_csv(self):
         t1 = self.team1.to_csv()
@@ -105,7 +107,7 @@ class Game:
         return rs
 
 # ダウンロードしたhtmlファイルを開く
-htmlfile = 'sample.html'
+htmlfile = './data/sample.html'
 with open(htmlfile , encoding='utf-8') as f:
     html = f.read()
 
