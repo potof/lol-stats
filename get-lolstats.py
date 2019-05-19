@@ -12,13 +12,12 @@ class Player:
 
     roles = ("top", "jg", "mid", "adc", "sup")
 
-    def __init__(self, teamno, playerno):
+    def __init__(self, playerno, teamno):
         self.teamno = teamno
         self.role = Player.roles[playerno]
-        if playerno == 0:
-            self.playerno = playerno
-        elif playerno == 1:
-            self.playerno = playerno + 4
+        self.playerno = playerno
+        if self.teamno == 1:
+            self.playerno += 5
         self.name = ""
         self.champion = ""
         self.kill = 0
