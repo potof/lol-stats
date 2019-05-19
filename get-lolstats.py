@@ -10,10 +10,17 @@ from bs4 import BeautifulSoup
 
 class Player:
 
-    def __init__(self):
+    roles = ("top", "jg", "mid", "adc", "sup")
+
+    def __init__(self, teamno, playerno):
+        self.teamno = teamno
+        self.role = Player.roles[playerno]
+        if playerno == 0:
+            self.playerno = playerno
+        elif playerno == 1:
+            self.playerno = playerno + 4
         self.name = ""
         self.champion = ""
-        self.role = ""
         self.kill = 0
         self.death = 0
         self.assist = 0
@@ -26,7 +33,26 @@ class Player:
         t.update(self.stats)
         return t
     
-    def set_stats(self, key, val):
+    def parse(self, soup):
+        div_names = soup.select("div.champion-nameplate-name > div > span")
+        self.name = div_names[self.playerno].text
+
+        div_champs = soup.select("div.player > div.champion-col > div > div.champion-nameplate > div > div > div")
+        self.champion = div_champs[self.playerno].attrs["data-rg-id"]
+
+        # プレイヤーの詳細statsを登録する
+        rows = soup.select("tbody#stats-body > tr.grid-row")
+        for row in rows:
+
+            # 項目(div.viewで項目を表示しているぽい)
+            key = row.find("div", class_="view").string.replace("\n","")
+
+            # 値(div.grid-cellで値を表示しているぽい)
+            value = row.find_all("div", class_="grid-cell")
+
+            self.__set_stats(key, value[self.playerno].string.replace("\n",""))
+
+    def __set_stats(self, key, val):
         if val == "-":
             self.stats[key] = 0
         elif val == "○":
@@ -50,19 +76,21 @@ class Player:
 
 class Team:
 
-    def __init__(self):
+    def __init__(self, teamno):
+        self.teamno = teamno
         self.game_result= ""
-        # TODO: player1~5は配列にしたほうがよさそう
-        self.player1 = Player()
-        self.player2 = Player()
-        self.player3 = Player()
-        self.player4 = Player()
-        self.player5 = Player()
+        # TODO: 配列にする
+        self.player1 = Player(0, teamno)
+        self.player2 = Player(1, teamno)
+        self.player3 = Player(2, teamno)
+        self.player4 = Player(3, teamno)
+        self.player5 = Player(4, teamno)
         self.towers_destroyed = 0
         self.inhibitors_destroyed = 0
         self.barons_slain = 0
         self.dragons_slain = 0
         self.rift_heralds_slain = 0
+        # TODO: 配列にする
         self.ban1 = ""
         self.ban2 = ""
         self.ban3 = ""
@@ -85,14 +113,46 @@ class Team:
         p5.update(cm)
         return p1, p2, p3, p4, p5
 
+    def parse(self, soup):
+
+        self.towers_destroyed = soup.select("div.tower-kills > span")[self.teamno].text
+        self.inhibitors_destroyed = soup.select("div.inhibitor-kills > span")[self.teamno].text
+        self.barons_slain = soup.select("div.baron-kills > span")[self.teamno].text
+        self.dragons_slain = soup.select("div.dragon-kills > span")[self.teamno].text
+        self.rift_heralds_slain = soup.select("div.rift-herald-kills > span")[self.teamno].text
+        self.game_result = soup.select("div.game-conclusion")[self.teamno].text.strip()
+
+        # TODO: きれいにできそう
+        div_bans = soup.select("div.bans > div.champion-nameplate > div > div > div")
+        if self.teamno == 0:
+            self.ban1 = div_bans[0].attrs["data-rg-id"]
+            self.ban2 = div_bans[1].attrs["data-rg-id"]
+            self.ban3 = div_bans[2].attrs["data-rg-id"]
+            self.ban4 = div_bans[3].attrs["data-rg-id"]
+            self.ban5 = div_bans[4].attrs["data-rg-id"]
+        elif self.teamno == 1:
+            self.ban1 = div_bans[5].attrs["data-rg-id"]
+            self.ban2 = div_bans[6].attrs["data-rg-id"]
+            self.ban3 = div_bans[7].attrs["data-rg-id"]
+            self.ban4 = div_bans[8].attrs["data-rg-id"]
+            self.ban5 = div_bans[9].attrs["data-rg-id"]
+        
+        self.player1.parse(soup)
+        self.player2.parse(soup)
+        self.player3.parse(soup)
+        self.player4.parse(soup)
+        self.player5.parse(soup)
+
 class Game:
 
-    def __init__(self):
+    def __init__(self, html):
+        self.html = html
+        self.soup = BeautifulSoup(self.html, "lxml")
         self.date = ""
         self.time = ""
         # TODO: team1, team2 は配列にしたほうがよさそう
-        self.team1 = Team()
-        self.team2 = Team()
+        self.team1 = Team(0)
+        self.team2 = Team(1)
 
     def to_csv(self):
         t1 = self.team1.to_csv()
@@ -106,6 +166,15 @@ class Game:
             rs.append(t)
         return rs
 
+    def parse(self):
+        self.time = self.soup.select_one("div#binding-698").text
+        self.date = self.soup.select_one("div#binding-699").text
+
+        self.team1.parse(self.soup)
+        self.team2.parse(self.soup)
+
+
+
 # ダウンロードしたhtmlファイルを開く
 htmlfile = './data/sample.html'
 with open(htmlfile , encoding='utf-8') as f:
@@ -114,107 +183,11 @@ with open(htmlfile , encoding='utf-8') as f:
 # BeautifulSoupで扱えるようにパースします
 soup = BeautifulSoup(html, "lxml")
 
-game = Game()
-
-# Game情報の取得
-game.time = soup.select_one("div#binding-698").text
-game.date = soup.select_one("div#binding-699").text
-
-# Team情報の取得 
-game.team1.towers_destroyed = soup.select("div.tower-kills > span")[0].text
-game.team2.towers_destroyed = soup.select("div.tower-kills > span")[1].text
-
-game.team1.inhibitors_destroyed = soup.select("div.inhibitor-kills > span")[0].text
-game.team2.inhibitors_destroyed = soup.select("div.inhibitor-kills > span")[1].text
-
-game.team1.barons_slain = soup.select("div.baron-kills > span")[0].text
-game.team2.barons_slain = soup.select("div.baron-kills > span")[1].text
-
-game.team1.dragons_slain = soup.select("div.dragon-kills > span")[0].text
-game.team2.dragons_slain = soup.select("div.dragon-kills > span")[1].text
-
-game.team1.rift_heralds_slain = soup.select("div.rift-herald-kills > span")[0].text
-game.team2.rift_heralds_slain = soup.select("div.rift-herald-kills > span")[1].text
-
-div_bans = soup.select("div.bans > div.champion-nameplate > div > div > div")
-game.team1.ban1 = div_bans[0].attrs["data-rg-id"]
-game.team1.ban2 = div_bans[1].attrs["data-rg-id"]
-game.team1.ban3 = div_bans[2].attrs["data-rg-id"]
-game.team1.ban4 = div_bans[3].attrs["data-rg-id"]
-game.team1.ban5 = div_bans[4].attrs["data-rg-id"]
-game.team2.ban1 = div_bans[5].attrs["data-rg-id"]
-game.team2.ban2 = div_bans[6].attrs["data-rg-id"]
-game.team2.ban3 = div_bans[7].attrs["data-rg-id"]
-game.team2.ban4 = div_bans[8].attrs["data-rg-id"]
-game.team2.ban5 = div_bans[9].attrs["data-rg-id"]
-
-game.team1.game_result = soup.select("div.game-conclusion")[0].text.strip()
-game.team2.game_result = soup.select("div.game-conclusion")[1].text.strip()
-
-# プレイヤー情報
-div_names = soup.select("div.champion-nameplate-name > div > span")
-game.team1.player1.name = div_names[0].text
-game.team1.player2.name = div_names[1].text
-game.team1.player3.name = div_names[2].text
-game.team1.player4.name = div_names[3].text
-game.team1.player5.name = div_names[4].text
-game.team2.player1.name = div_names[5].text
-game.team2.player2.name = div_names[6].text
-game.team2.player3.name = div_names[7].text
-game.team2.player4.name = div_names[8].text
-game.team2.player5.name = div_names[9].text
-
-div_champs = soup.select("div.player > div.champion-col > div > div.champion-nameplate > div > div > div")
-game.team1.player1.champion = div_champs[0].attrs["data-rg-id"]
-game.team1.player2.champion = div_champs[1].attrs["data-rg-id"]
-game.team1.player3.champion = div_champs[2].attrs["data-rg-id"]
-game.team1.player4.champion = div_champs[3].attrs["data-rg-id"]
-game.team1.player5.champion = div_champs[4].attrs["data-rg-id"]
-game.team2.player1.champion = div_champs[5].attrs["data-rg-id"]
-game.team2.player2.champion = div_champs[6].attrs["data-rg-id"]
-game.team2.player3.champion = div_champs[7].attrs["data-rg-id"]
-game.team2.player4.champion = div_champs[8].attrs["data-rg-id"]
-game.team2.player5.champion = div_champs[9].attrs["data-rg-id"]
-
-game.team1.player1.role = "top"
-game.team1.player2.role = "jg"
-game.team1.player3.role = "mid"
-game.team1.player4.role = "adc"
-game.team1.player5.role = "sup"
-game.team2.player1.role = "top"
-game.team2.player2.role = "jg"
-game.team2.player3.role = "mid"
-game.team2.player4.role = "adc"
-game.team2.player5.role = "sup"
-
-
-# プレイヤーの詳細statsを登録する
-# tr.grid-rowが選手ごとの情報を格納している形式ぽい
-rows = soup.select("tbody#stats-body > tr.grid-row")
-for row in rows:
-
-    # 項目(div.viewで項目を表示しているぽい)
-    key = row.find("div", class_="view").string.replace("\n","")
-
-    # 値(div.grid-cellで値を表示しているぽい)
-    value = row.find_all("div", class_="grid-cell")
-
-    # player classのdictにいれる
-    # TODO: プレイヤーごとに書かないような感じにしたい
-    game.team1.player1.set_stats(key, value[0].string.replace("\n",""))
-    game.team1.player2.set_stats(key, value[1].string.replace("\n",""))
-    game.team1.player3.set_stats(key, value[2].string.replace("\n",""))
-    game.team1.player4.set_stats(key, value[3].string.replace("\n",""))
-    game.team1.player5.set_stats(key, value[4].string.replace("\n",""))
-    game.team2.player1.set_stats(key, value[5].string.replace("\n",""))
-    game.team2.player2.set_stats(key, value[6].string.replace("\n",""))
-    game.team2.player3.set_stats(key, value[7].string.replace("\n",""))
-    game.team2.player4.set_stats(key, value[8].string.replace("\n",""))
-    game.team2.player5.set_stats(key, value[9].string.replace("\n",""))
-
+game = Game(html)
+game.parse()
 
 # CSV出力
-output_file = "LJL-stats.csv"
+output_file = "./output/LJL-stats.csv"
 with open( output_file, "w", newline="") as f:
     csv_g = game.to_csv()
     writer = csv.DictWriter(f, csv_g[0].keys())
