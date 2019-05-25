@@ -1,32 +1,35 @@
 # coding: UTF-8
-import requests
-from bs4 import BeautifulSoup
+import csv
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import chromedriver_binary
 
 
+csvfile = open("./url_list.csv", "r", encoding="utf-8")
+csvreader = csv.reader(csvfile, delimiter=",")
 
-# # TODO URLはlolesports.apiから取ってくる
-# # http://loltool.info/promatch/
-# # http://api.lolesports.com/api/v1/scheduleItems?leagueId=42
-# url = "https://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1000235?gameHash=2c25f80326c7ac14&tab=stats"
+# 裏でブラウザを起動する
+options = Options()
+options.set_headless(True)
+driver = webdriver.Chrome(options=options)
+driver.set_script_timeout(10)
 
-# # TODO htmlをローカルに保存する
-# # get html file
-# # r = requests.get(url) 
-# # soup = BeautifulSoup(r.text, "lxml")
-# # print(r)
 
-# # ブラウザのオプションを格納する変数をもらってきます。
-# options = Options()
+for row in csvreader:
 
-# # Headlessモードを有効にする（裏で起動する）
-# options.set_headless(True)
+    # 「#」から始まる行はコメントとして扱う
+    if row[0][0] == "#":
+        continue
 
-# # ブラウザを起動してhtmlを取得する
-# driver = webdriver.Chrome(chrome_options=options)
-# driver.get(url)
+    url = row[1]
+    htmlfilename = "./data/" + row[0] + "_" + row[2] + ".html"
 
-# # HTMLの文字コードをUTF-8に変換する
-# html = driver.page_source.encode('utf-8')
+    driver.get(url)
+    time.sleep(10)
+    html = driver.page_source
+
+    with open(htmlfilename, "w", newline="", encoding="utf-8") as f:
+        f.write(html)
+    f.close()
+
