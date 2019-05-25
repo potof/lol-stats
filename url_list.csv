@@ -1,0 +1,122 @@
+# coding utf-8
+#http://loltool.info/promatch/
+#LeagueId : 
+#42
+# Diff :
+#1
+# YearFilter :
+#2019
+#(※AllData:-1) 
+#output: 
+#2:LCS 3:LEC 6:LCK 8:LMS 13:OPL 14:CBLOL 32:TR 42:LJL 51:NA Academy 59:TAL 63:LLA
+#
+#http://api.lolesports.com/api/v1/scheduleItems?leagueId=42
+#startDate : 2019-01-18
+#トーナメント名 : LJL 2019 Spring Split      title : ljl_2019_spring
+#GameDay : 2019-01-19
+2019-01-19,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1000235?gameHash=2c25f80326c7ac14 , SG-vs-AXZ_G1
+2019-01-19,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1010242?gameHash=9ee93a0c2a175828 , RJ-vs-AXZ_G1
+2019-01-19,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1010247?gameHash=719e3f105f9e2346 , RJ-vs-USG_G1
+2019-01-19,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1010253?gameHash=41618a32cbc2f3d6 , SG-vs-USG_G1
+2019-01-19,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1010263?gameHash=e5c8720df2e3a115 , V3-vs-BC_G1
+2019-01-19,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1010277?gameHash=a61c0bc3a54b842f , V3-vs-CGA_G1
+2019-01-19,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1010304?gameHash=65889c8ddd04bdf5 , DFM-vs-CGA_G1
+2019-01-19,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1010317?gameHash=bbb183c42ae32a06 , DFM-vs-BC_G1
+#GameDay : 2019-01-25
+2019-01-25,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1000530?gameHash=985baa89a1d9ae1a , SG-vs-V3_G1
+2019-01-25,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1000548?gameHash=2e30d9d043e37138 , AXZ-vs-V3_G1
+2019-01-25,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1000554?gameHash=311a5af3668f3446 , RJ-vs-SG_G1
+2019-01-25,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1000563?gameHash=f342cc4a8557af42 , USG-vs-BC_G1
+2019-01-25,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1000588?gameHash=6d9daad578419139 , USG-vs-DFM_G1
+#GameDay : 2019-01-26
+2019-01-26,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1000649?gameHash=4b709acb8e3d6ccb , SG-vs-CGA_G1
+2019-01-26,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1000655?gameHash=71efe9fa6aede822 , RJ-vs-CGA_G1
+2019-01-26,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1000662?gameHash=5ef6e5e1cceb84d2 , RJ-vs-DFM_G1
+#GameDay : 2019-02-01
+2019-02-01,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1051151?gameHash=45efb51ce696b73b , AXZ-vs-CGA_G1
+2019-02-01,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1051168?gameHash=fc2ab7d0e6bbe993 , USG-vs-CGA_G1
+2019-02-01,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1051182?gameHash=49ad4669d04e73b3 , USG-vs-V3_G1
+2019-02-01,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1051202?gameHash=5e1388804f9e1656 , RJ-vs-V3_G1
+2019-02-01,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1051208?gameHash=769f584d8a9c4278 , BC-vs-RJ_G1
+#GameDay : 2019-02-02
+2019-02-02,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1061413?gameHash=c7d12f1a9ce01e98 , BC-vs-SG_G1
+2019-02-02,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1061469?gameHash=c575d9f81b3a4f2d , USG-vs-AXZ_G1
+2019-02-02,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1061469?gameHash=c575d9f81b3a4f2d , AXZ-vs-DFM_G1
+#GameDay : 2019-02-09
+2019-02-09,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1052971?gameHash=be398613baa8fa20 , CGA-vs-BC_G1
+2019-02-09,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1053017?gameHash=c1f2da208b995cb0 , DFM-vs-V3_G1
+2019-02-09,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1053048?gameHash=77915ff2e7e232e8 , DFM-vs-SG_G1
+2019-02-09,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1053059?gameHash=ce52719738a90244 , AXZ-vs-BC_G1
+2019-02-09,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1053077?gameHash=d79a4009ca425c0f , CGA-vs-RJ_G1
+2019-02-09,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1053084?gameHash=73a1ad8dd17a1c74 , AXZ-vs-USG_G1
+2019-02-09,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1053107?gameHash=16ceb1acd68a2d50 , USG-vs-RJ_G1
+#GameDay : 2019-02-15
+2019-02-15,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1011578?gameHash=011f384e6ed19171 , V3-vs-SG_G1
+2019-02-15,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1011594?gameHash=bee32b247f695096 , CGA-vs-SG_G1
+2019-02-15,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1011616?gameHash=5b916d970ff163a5 , BC-vs-USG_G1
+#GameDay : 2019-02-16
+2019-02-16,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1011892?gameHash=d9eeec9d02cb5a00 , DFM-vs-RJ_G1
+2019-02-16,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1011913?gameHash=447792f677fc5200 , DFM-vs-USG_G1
+2019-02-16,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1011942?gameHash=e5efedef1cfbf0c3 , BC-vs-CGA_G1
+2019-02-16,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1011982?gameHash=e17c2fa40007e0d7 , BC-vs-AXZ_G1
+2019-02-16,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1012011?gameHash=0b37985a63c73147 , V3-vs-AXZ_G1
+#GameDay : 2019-02-24
+2019-02-24,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1014880?gameHash=88c12efefcc6a6cc , RJ-vs-BC_G1
+2019-02-24,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1014895?gameHash=0df7f41437117bac , SG-vs-BC_G1
+2019-02-24,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1014915?gameHash=8648ea9f36e2823a , SG-vs-RJ_G1
+2019-02-24,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1014928?gameHash=86cc8449c5ba7854 , DFM-vs-AXZ_G1
+2019-02-24,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1014955?gameHash=f595eddd510e3fe0 , CGA-vs-AXZ_G1
+2019-02-24,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1014970?gameHash=bd0909482f7dfd65 , V3-vs-DFM_G1
+2019-02-24,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1014997?gameHash=a07ec2843b058ff9 , CGA-vs-USG_G1
+#GameDay : 2019-03-01
+2019-03-01,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1031134?gameHash=7499093d90357183 , AXZ-vs-RJ_G1
+2019-03-01,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1031155?gameHash=e2ba6e5bdc2ebeca , AXZ-vs-SG_G1
+2019-03-01,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1031171?gameHash=f2839232a465ed7b , SG-vs-DFM_G1
+#GameDay : 2019-03-02
+2019-03-02,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1031311?gameHash=4553987e58cf4c24 , CGA-vs-DFM_G1
+2019-03-02,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1021399?gameHash=9aa608f9ae830527 , BC-vs-DFM_G1
+2019-03-02,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1021413?gameHash=a94e581d4c85064f , BC-vs-V3_G1
+2019-03-02,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1021447?gameHash=e20ea31771ee20db , CGA-vs-V3_G1
+#GameDay : 2019-03-10
+2019-03-10,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1033990?gameHash=6264e125eed44fd8 , V3-vs-USG_G1
+2019-03-10,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1023983?gameHash=7345d90e40dd4b93 , V3-vs-RJ_G1
+2019-03-10,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1023994?gameHash=4a4a270cd4e6f64f , DFM-vs-RJ-1_G1
+2019-03-10,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1024017?gameHash=217a47f2fe68268f , CGA-vs-USG-1_G1
+2019-03-10,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1024039?gameHash=0d291801bc082967 , CGA-vs-SG-1_G1
+2019-03-10,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1024055?gameHash=d9295faecdac43b7 , BC-vs-SG-1_G1
+2019-03-10,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1024088?gameHash=d26f2da02be55524 , BC-vs-AXZ-1_G1
+2019-03-10,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT03/1024119?gameHash=a73a28c0f0f59f72 , AXZ-vs-DFM-1_G1
+#GameDay : 2019-03-15
+2019-03-15,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1081141?gameHash=675fac0bd4ceef13 , USG-vs-RJ-1_G1
+2019-03-15,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1081178?gameHash=c079a61dbff2e4e1 , USG-vs-V3-1_G1
+2019-03-15,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1081200?gameHash=94ab2607e6a9e3c5 , AXZ-vs-V3-1_G1
+2019-03-15,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1081238?gameHash=ce77b4a1ee0dd17a , CGA-vs-DFM-1_G1
+2019-03-15,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1081277?gameHash=f4576da1e6731f05 , AXZ-vs-SG-1_G1
+#GameDay : 2019-03-16
+2019-03-16,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1071565?gameHash=36046f2b3ca107e5 , BC-vs-RJ-1_G1
+2019-03-16,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1081552?gameHash=9729b9a2f2a6690f , CGA-vs-V3-1_G1
+#GameDay : 2019-03-21
+2019-03-21,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1073044?gameHash=34a84c822326ecf3 , AXZ-vs-USG-1_G1
+2019-03-21,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1073062?gameHash=253e09932a71ac71 , BC-vs-USG-1_G1
+2019-03-21,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1073098?gameHash=79e4e835dc0170a4 , BC-vs-DFM-1_G1
+2019-03-21,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1073130?gameHash=0fe6f9486143fd3c , V3-vs-DFM-1_G1
+2019-03-21,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1073155?gameHash=1a237c0c1a6a1a85 , CGA-vs-RJ-1_G1
+2019-03-21,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1073198?gameHash=915ce59bff383904 , RJ-vs-SG-1_G1
+2019-03-21,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1073228?gameHash=cd4a37cccb345da9 , V3-vs-SG-1_G1
+#GameDay : 2019-03-22
+2019-03-22,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1083540?gameHash=fd881263a93938d3 , V3-vs-RJ-1_G1
+2019-03-22,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1083590?gameHash=4c57dbc5a5ed0f6c , AXZ-vs-RJ-1_G1
+2019-03-22,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1083617?gameHash=3951392af0c24320 , BC-vs-V3-1_G1
+2019-03-22,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1083719?gameHash=353a7aeb13d14bbc , BC-vs-CGA-1_G1
+2019-03-22,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1083719?gameHash=353a7aeb13d14bbc , CGA-vs-AXZ-1_G1
+2019-03-22,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1083777?gameHash=405fa4e1ff4de565 , USG-vs-DFM-1_G1
+2019-03-22,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1083815?gameHash=de52e2aed82cf29d , DFM-vs-SG-1_G1
+2019-03-22,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1083845?gameHash=fea4310098c6d955 , USG-vs-SG-1_G1
+#GameDay : 2019-04-06
+2019-04-06,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1022948?gameHash=ad5eaabec06a36c8 , r1m1_G1
+2019-04-06,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1032819?gameHash=f0f8f8dd5717f9fe , r1m1_G2
+2019-04-06,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1032825?gameHash=e47c4974643dda05 , r1m1_G3
+#GameDay : 2019-04-13
+2019-04-13,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1023962?gameHash=ad5ec4c314e51b37 , r2m1_G1
+2019-04-13,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1033792?gameHash=5c9508eaccffd856 , r2m1_G2
+2019-04-13,http://matchhistory.na.leagueoflegends.com/en/#match-details/ESPORTSTMNT02/1033794?gameHash=3dc83fdab8f0756e , r2m1_G3
