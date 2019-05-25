@@ -1,6 +1,7 @@
 # coding: UTF-8
+import os
+import glob
 import dataclasses
-from dataclasses import field
 import csv
 import time
 import datetime
@@ -173,24 +174,27 @@ class Game:
         self.team2.parse(self.soup)
 
 
+htmlfiles = glob.glob("./data/*")
+for htmlfile in htmlfiles:
 
-# ダウンロードしたhtmlファイルを開く
-htmlfile = './data/sample.html'
-with open(htmlfile , encoding='utf-8') as f:
-    html = f.read()
+    # ダウンロードしたhtmlファイルを開く
+    with open(htmlfile , encoding='utf-8') as f:
+        html = f.read()
 
-# BeautifulSoupで扱えるようにパースします
-soup = BeautifulSoup(html, "lxml")
+    # BeautifulSoupで扱えるようにパースします
+    soup = BeautifulSoup(html, "lxml")
 
-game = Game(html)
-game.parse()
+    # ゲーム情報を取得する
+    game = Game(html)
+    game.parse()
 
-# CSV出力
-output_file = "./output/LJL-stats.csv"
-with open( output_file, "w", newline="") as f:
-    csv_g = game.to_csv()
-    writer = csv.DictWriter(f, csv_g[0].keys())
-    writer.writeheader()
-    writer.writerows(csv_g)
-f.close()
+    # CSV出力
+    output_file = "./output/" + os.path.split(htmlfile)[1] + ".csv"
+    
+    with open( output_file, "w", newline="") as f:
+        csv_g = game.to_csv()
+        writer = csv.DictWriter(f, csv_g[0].keys())
+        writer.writeheader()
+        writer.writerows(csv_g)
+    f.close()
 
