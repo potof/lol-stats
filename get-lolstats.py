@@ -90,17 +90,14 @@ class Team:
         self.barons_slain = 0
         self.dragons_slain = 0
         self.rift_heralds_slain = 0
-        # TODO: 配列にする
-        self.ban1 = ""
-        self.ban2 = ""
-        self.ban3 = ""
-        self.ban4 = ""
-        self.ban5 = ""
+        self.bans = ["None","None","None","None","None"]
 
     def to_csv(self):
         cm = {"game_result":self.game_result, "towers_destroyed":self.towers_destroyed, "inhibitors_destroyed":self.inhibitors_destroyed,
-            "barons_slain":self.barons_slain, "dragons_slain":self.dragons_slain, "rift_heralds_slain":self.rift_heralds_slain,
-            "ban1":self.ban1, "ban2":self.ban2, "ban3":self.ban3, "ban4":self.ban4, "ban5":self.ban5}
+            "barons_slain":self.barons_slain, "dragons_slain":self.dragons_slain, "rift_heralds_slain":self.rift_heralds_slain}
+        bans_dict = dict(zip(["ban1","ban2","ban3","ban4","ban5"], self.bans))
+        cm.update(bans_dict)
+
         p1 = self.player1.to_dict()
         p2 = self.player2.to_dict()
         p3 = self.player3.to_dict()
@@ -122,21 +119,12 @@ class Team:
         self.rift_heralds_slain = soup.select("div.rift-herald-kills > span")[self.teamno].text
         self.game_result = soup.select("div.game-conclusion")[self.teamno].text.strip()
 
-        # TODO: きれいにできそう
-        div_bans = soup.select("div.bans > div.champion-nameplate > div > div > div")
-        if self.teamno == 0:
-            self.ban1 = div_bans[0].attrs["data-rg-id"]
-            self.ban2 = div_bans[1].attrs["data-rg-id"]
-            self.ban3 = div_bans[2].attrs["data-rg-id"]
-            self.ban4 = div_bans[3].attrs["data-rg-id"]
-            self.ban5 = div_bans[4].attrs["data-rg-id"]
-        elif self.teamno == 1:
-            self.ban1 = div_bans[5].attrs["data-rg-id"]
-            self.ban2 = div_bans[6].attrs["data-rg-id"]
-            self.ban3 = div_bans[7].attrs["data-rg-id"]
-            self.ban4 = div_bans[8].attrs["data-rg-id"]
-            self.ban5 = div_bans[9].attrs["data-rg-id"]
-        
+        # BANは枠没収で必ず5チャンピオンとは限らないので、ない場合は「None（デフォルト値）」にする
+        div_banscountainer = soup.select("div.bans-container")[self.teamno]
+        div_bans = div_banscountainer.select("div.bans > div.champion-nameplate > div > div > div")
+        for i, ban in enumerate(div_bans):
+            self.bans[i] = ban.attrs["data-rg-id"]
+
         self.player1.parse(soup)
         self.player2.parse(soup)
         self.player3.parse(soup)
