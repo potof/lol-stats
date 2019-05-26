@@ -9,7 +9,6 @@ LJLのスタッツをまとめたいと思いましたが、LJLの試合はRiot 
 
 ## Demo
 
-
 ## VS. 
 Riot API 
 
