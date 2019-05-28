@@ -169,14 +169,13 @@ for htmlfile in htmlfiles:
     with open(htmlfile , encoding='utf-8') as f:
         html = f.read()
 
-    # BeautifulSoupで扱えるようにパースします
     soup = BeautifulSoup(html, "lxml")
 
-    # ゲーム情報を取得する
+    # HTMLからゲーム情報をパースして格納する
     game = Game(html)
     game.parse()
 
-    # CSV出力
+    # HTMLファイルごとにCSVを出力する
     output_file = "./output/" + os.path.split(htmlfile)[1] + ".csv"
     
     with open( output_file, "w", newline="") as f:
@@ -185,4 +184,3 @@ for htmlfile in htmlfiles:
         writer.writeheader()
         writer.writerows(csv_g)
     f.close()
-
