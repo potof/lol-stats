@@ -40,6 +40,9 @@ class Player:
         div_champs = soup.select("div.player > div.champion-col > div > div.champion-nameplate > div > div > div")
         self.champion = div_champs[self.playerno].attrs["data-rg-id"]
 
+        div_css = soup.select("div.cs > div")
+        self.cs = div_css[self.playerno].text
+
         # プレイヤーの詳細statsを登録する
         rows = soup.select("tbody#stats-body > tr.grid-row")
         for row in rows:
