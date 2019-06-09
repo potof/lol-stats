@@ -141,6 +141,8 @@ class Game:
         self.soup = BeautifulSoup(self.html, "lxml")
         self.date = ""
         self.time = ""
+        self.total_min = ""
+        self.total_sec = ""
         # TODO: team1, team2 は配列にしたほうがよさそう
         self.team1 = Team(0)
         self.team2 = Team(1)
@@ -150,16 +152,20 @@ class Game:
         t2 = self.team2.to_csv()
         rs = []
         for t in t1:
-            t.update({"date":self.date, "time":self.time})
+            t.update({"date":self.date, "time":self.time, "total_min":self.total_min, "total_sec":self.total_sec})
             rs.append(t)
         for t in t2:
-            t.update({"date":self.date, "time":self.time})
+            t.update({"date":self.date, "time":self.time, "total_min":self.total_min, "total_sec":self.total_sec})
             rs.append(t)
         return rs
 
     def parse(self):
         self.time = self.soup.select_one("div#binding-698").text
         self.date = self.soup.select_one("div#binding-699").text
+
+        m, s = [int(i) for i in self.time.split(':')]
+        self.total_min = m + s / 60
+        self.total_sec = 60 * m + s
 
         self.team1.parse(self.soup)
         self.team2.parse(self.soup)
